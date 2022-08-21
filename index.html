@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //假设我们需要求12个正方形的周长和面积，每个正方形的边长为5和6相间 这里则运用到函数和原型的结合
+        //思路每个正方形自己固有的属性是变长，通过数组实现。然而他们的周长和面积计算方法是一样的，这属于他们的共有属性，所以则运用到函数和原型的结合。
+        let widthList = [5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6]
+        let squareList = []
+        function Square(width) {
+            this.width = width
+        }
+        Square.prototype.getArea = function (width) {
+            return this.width * this.width
+        }
+        Square.prototype.getLength = function (width) {
+            return this.width * 4
+        }
+        for (i = 0; i < 12; i++) {
+            squareList[i] = new Square(widthList[i])
+            console.log(squareList[i].constructor)
+        }
+        //如果需求改成长方形，出现了两个参数我们该怎么求。
+        function Rect(width, height) {
+            this.width = width
+            this.height = height
+        }
+        Rect.prototype.getArea = function (width, height) {
+            return this.width * this.height
+        }
+        Rect.prototype.getLength = function (width, height) {
+            return this.width * this.height
+        }
+        let rect = new Rect(4, 5)
+
+    </script>
+</body>
+
+</html>
